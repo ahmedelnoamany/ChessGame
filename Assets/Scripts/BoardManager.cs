@@ -14,7 +14,8 @@ public class BoardManager : MonoBehaviour {
 	private static int columns = 8;		//board size. columns x rows
 	private static int rows = 8;
 	private Transform boardHolder;		//to keep the hierarchy clean.
-	private List <Vector3> gridPositions = new List<Vector3>();		//all board positions.
+	private Transform pieces;
+	//private List <Vector3> gridPositions = new List<Vector3>();		//all board positions.
 
 	
 	//Called by the GameManager in order to set up the gameBoard
@@ -57,6 +58,32 @@ public class BoardManager : MonoBehaviour {
 
 	//Called by SetupGame(). Sets up the board pieces.
 	void SetBoardPieces(){
-		
+		pieces = new GameObject ("Pieces").transform;
+
+		for(int i = 0; i < whiteTeam.Length; i++){
+
+			if (i == 0) { //Pawns bro!!!!
+				GameObject whiteInstantiate = whiteTeam [i];
+				GameObject blackInstantiate = blackTeam [i];
+				for (int j = 0; j < columns; j++) {
+					GameObject wpawn = Instantiate (whiteInstantiate, new Vector3 (1, j, 0f), Quaternion.identity) as GameObject;
+					wpawn.transform.SetParent (pieces);
+					GameObject bpawn = Instantiate (blackInstantiate, new Vector3 (6, j, 0f), Quaternion.identity) as GameObject;
+					bpawn.transform.SetParent (pieces);
+				}
+			} else {
+				GameObject wpiece = Instantiate (whiteTeam [i], new Vector3 (0, i - 1, 0f), Quaternion.identity) as GameObject;		//instantiating white pieces
+				wpiece.transform.SetParent (pieces);
+				GameObject bpiece = Instantiate (blackTeam [i], new Vector3 (7, i - 1, 0f), Quaternion.identity) as GameObject;		//instantiating black pieces
+				bpiece.transform.SetParent (pieces);
+
+				if (i < whiteTeam.Length - 2) {	//if not king or queen then make another copy of it.
+					GameObject wpiece2 = Instantiate (whiteTeam [i], new Vector3 (0, 8 - i, 0f), Quaternion.identity) as GameObject;
+					wpiece2.transform.SetParent (pieces);
+					GameObject bpiece2 = Instantiate (blackTeam [i], new Vector3 (7, 8 - i, 0f), Quaternion.identity) as GameObject;
+					bpiece2.transform.SetParent (pieces);
+				}
+			}
+		}
 	}
 }
