@@ -63,15 +63,15 @@ public class BoardManager : MonoBehaviour {
 		for(int i = 0; i < whiteTeam.Length; i++){
 
 			if (i == 0) { //Pawns bro!!!!
-				GameObject whiteInstantiate = whiteTeam [i];
+				GameObject whiteInstantiate = whiteTeam [i];	//At i=0, pawns
 				GameObject blackInstantiate = blackTeam [i];
-				for (int j = 0; j < columns; j++) {
-					GameObject wpawn = Instantiate (whiteInstantiate, new Vector3 (1, j, 0f), Quaternion.identity) as GameObject;
-					wpawn.transform.SetParent (pieces);
-					GameObject bpawn = Instantiate (blackInstantiate, new Vector3 (6, j, 0f), Quaternion.identity) as GameObject;
+				for (int j = 0; j < columns; j++) {	//8 pawns each color
+					GameObject wpawn = Instantiate (whiteInstantiate, new Vector3 (1, j, 0f), Quaternion.identity) as GameObject;		//Instantiating white pawns
+					wpawn.transform.SetParent (pieces);		//setting parent to keep 
+					GameObject bpawn = Instantiate (blackInstantiate, new Vector3 (6, j, 0f), Quaternion.identity) as GameObject;		//Instantiating black pawns
 					bpawn.transform.SetParent (pieces);
 				}
-			} else {
+			} else {	//all the other pieces
 				GameObject wpiece = Instantiate (whiteTeam [i], new Vector3 (0, i - 1, 0f), Quaternion.identity) as GameObject;		//instantiating white pieces
 				wpiece.transform.SetParent (pieces);
 				GameObject bpiece = Instantiate (blackTeam [i], new Vector3 (7, i - 1, 0f), Quaternion.identity) as GameObject;		//instantiating black pieces
