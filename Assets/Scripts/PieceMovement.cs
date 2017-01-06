@@ -16,5 +16,12 @@ public abstract class PieceMovement : MonoBehaviour {
 		rigidBody = GetComponent<Rigidbody2D> ();
 	}
 
+	protected bool Move(int targetX, int targetY){
+		
+	}
+
+	//checks for all available moves a piece can make.
+	protected virtual void AvailableMoves ();		//to be overwritten in children. 
+
 
 }

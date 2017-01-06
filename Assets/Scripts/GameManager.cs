@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance = null;		//instance of GameManager.
 	public BoardManager boardScript;		//to store our boardManager script.
-	public PieceMovement movePiece;		//for the piecemovemnt script so we can move the pieces.
+	//PieceMovement movePiece = new PieceMovement();		//for the piecemovemnt script so we can move the pieces.
 	public bool whoseTurn = true;	//white turn = true. Black turn = false.
 
 	private bool settingUp;		//true if setting up the game. False otherwise.
